@@ -14,7 +14,14 @@ export default defineConfig(({ command }) => {
 
   return {
     plugins: [
-      vue(),
+      vue({
+        template: {
+          compilerOptions: {
+            // treat all tags with a dash as custom elements
+            isCustomElement: (tag) => tag.includes('-')
+          }
+        }
+      }),
       electron({
         main: {
           // Shortcut of `build.lib.entry`
